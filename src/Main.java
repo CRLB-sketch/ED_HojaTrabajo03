@@ -14,7 +14,7 @@
  * 
  * Creado por:
  * 
- * @author Cristian Fernando Laynez Bachez
+ * @author Cristian Fernando Laynez Bachez, Elean Rivas
  * @version 1.0
  * @since 2021 - Febrero - 19
  **/    
