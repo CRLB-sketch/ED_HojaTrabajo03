@@ -20,7 +20,9 @@
  * @since 2021 - Febrero - 19
  **/    
 
-import java.util.Arrays;
+
+import java.util.*;
+import java.io.*;
 
 public class Sorting {
     
@@ -52,6 +54,18 @@ public class Sorting {
             }
         }
         return;
+    }
+
+    /***
+     * Radix Sort
+     * @param data el array que contiene los números a ordenar
+     */
+    public static void radixSort(int data[]){
+        // pre: data is array of values; each is less than 1,000,000
+        // post: data in the array are sorted into increasing order
+        for (int i = 0; i < 6; i++){
+            ordenRadix(data,i);
+        }
     }
 
     /**
@@ -143,11 +157,51 @@ public class Sorting {
         }
     }
 
+    /***
+     * Método para definir el orden para Radix
+     * @param data datos del array
+     * @param d los datos se ordenan por el dígito que se encuentra en la ubicación d
+     */
+    private static void ordenRadix(int data[], int d){
 
+        int i;
+        int j;
+        int value;
+        // alojar el orden que se usará, en esta caso de 0-9
+        Vector<Vector<Integer>> orden = new Vector<Vector<Integer>>(10);
+        orden.setSize(10);
+        for (j = 0; j < 10; j++) orden.set(j,new Vector<Integer>());
+        int n = data.length;
+        for (i = 0; i < n; i++){
+            value = data[i];
+            j = digit(value,d);
+            orden.get(j).add(value);
+        }
+        i = n;
+        for (j = 9; j >= 0; j--){
+            while (!orden.get(j).isEmpty()){
+                i--;
+                value = orden.get(j).remove(j);
+                data[i] = value;
+            }
+        }
+    }
+
+    /**
+     * el método que denota la base
+     * @param n numero usado para referencia y sacar los residuos
+     * @param d numero al cual será evaluado el módulo
+     * @return retorna la base del número
+     */
+    private static int digit(int n, int d){
+        if (d == 0) return n % 10;
+        else return digit(n/10,d-1);
+    }
 
 
 }
 
 
 
-//References de geek's for geek's
+//Referencias de geek's for geek's
+//References JavaStructures, Duane A. Bailey, 2007
