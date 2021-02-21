@@ -63,7 +63,18 @@ public class NumberGenerator {
         return numbers;
     }
 
-    public int[] convertIntToString(String[] numbers) {
-        return null;
+    public int[] convertStringToInt(String numbers) {
+        String[] the_numbers = numbers.split(" ");
+        
+        int[] the_numbersInt = new int[the_numbers.length];
+
+        for (int i = 0; i < the_numbers.length; i++) {
+            
+            int tempInt = Integer.parseInt(the_numbers[i]);
+
+            the_numbersInt[i] = tempInt;            
+        }
+        
+        return the_numbersInt;
     }
 }

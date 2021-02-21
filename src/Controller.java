@@ -20,6 +20,8 @@
  * @since 2021 - Febrero - 19
  **/    
 
+import java.lang.NumberFormatException;
+ 
 public class Controller {
     
     // --> Atributos
@@ -54,6 +56,20 @@ public class Controller {
                 // Ver estado del archivo Txt
                 case "2":
                     
+                    String info2 = fileR.readFile(nameFile);
+
+                    if(info2.equals("error")){
+                        view.errorFile();
+                    }
+                    else{
+                        if(info2.equals("") && info2.equals(" ")){
+                            view.fileState(0);
+                        }
+                        else{
+                            view.fileState(1);                            
+                        }
+                    }
+                
                     break;
 
                 // Asignar numeros al archivo Txt
@@ -76,7 +92,29 @@ public class Controller {
 
                 // Ordenar los numeros del archivo
                 case "4":
+                                                       
+                    String info4 = fileR.readFile(nameFile);
                     
+                    if(info4.equals("error")){
+                        // Mostrar mensaje de error
+                        view.errorFile();
+                    }
+                    else{
+                        try {
+                            // Obtener los numeros
+                            int[] finalNumbers = numberG.convertStringToInt(info4);
+                            
+                            // Utilizar métodos de ordenamiento
+                            
+                        } 
+                        // Mostrar los posibles errores
+                        catch (NumberFormatException e){
+                            view.errorLetter();
+                        }                        
+                        catch (Exception e) {                                                       
+                            view.errorUnknow();
+                        }
+                    }                    
                     break;
 
                 // Salir

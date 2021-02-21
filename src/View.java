@@ -44,7 +44,6 @@ public class View {
         System.out.println("3. Asignar numeros al archivo Txt");
         System.out.println("4. Ordenar los numeros del archivo");
         System.out.println("5. Salir");
-        System.out.println("");
 
         String option = scan.nextLine();
         return option;
@@ -80,6 +79,21 @@ public class View {
     }
     
     public void errorFile(){
-        System.out.println("--> No se encontro el archivo");
+        System.out.println("--> ERROR: No se encontro el archivo");
+    }
+
+    public void errorLetter(){
+        System.out.println("--> ERROR: Tu documento tiene letras, aquí solo ordenaremos numeros.");
+    }
+
+    public void errorUnknow(){
+        System.out.println("--> ERROR: Ocurrio un inconveniente desconocido :(");
+    }
+
+    public void fileState(int op){
+        if(op == 0)
+            System.out.println("--> Este archivo esta vacio");
+        if(op == 1)
+            System.out.println("--> Este archivo tiene contenido");
     }
 }
