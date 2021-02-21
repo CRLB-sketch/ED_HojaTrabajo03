@@ -20,61 +20,47 @@
  * @since 2021 - Febrero - 19
  **/    
 
+import java.util.Arrays;
+
 public class Sorting {
     
 
     //------------------------------------------------------------------------------
     // Métodos con los algoritmos correspondientes
     //------------------------------------------------------------------------------
-    
-    /**
-     * Selection Sort Algorithm.
-     * 
-     * @param data  Solicitar los datos que se desean ordenar
+
+    /***
+     * Gnome Sort Algoritm (Stupid Sort Algoritm)
+     * @param data: los numeros a ordenar
+     * @param n: cantidad de datos en el array
      */
-    public static void selectionSort(int data[]){
-        int numUnsorted = data.length;
-        int index; // general index
-        int max; // index of largest value
-        while (numUnsorted > 0)
-        {
-            // determine maximum value in array
-            max = 0;
-            for (index = 1; index < numUnsorted; index++)
-            {
-                if (data[max] < data[index]) max = index;
+    public static void gnomeSort(int data[], int n)
+    {
+        int index = 0;
+
+        while (index < n) {
+            if (index == 0)
+                index++;
+            if (data[index] >= data[index - 1])
+                index++;
+            else {
+                int temp = 0;
+                temp = data[index];
+                data[index] = data[index - 1];
+                data[index - 1] = temp;
+                index--;
             }
-            swap(data,max,numUnsorted-1);
-            numUnsorted--;
         }
+        return;
     }
-    
+
     /**
-     * Insertion Sort Algorithm.
-     * 
+     * Quick Sort Algorithm.
+     *
      * @param data  Solicitar los datos que se desean ordenar
      */
-    public static void insertionSort(int data[]){
-        int numSorted = 1; // number of values in place
-        int index; // general index
-        while (numSorted < data.length)
-        {
-            // take the first unsorted value
-            int temp = data[numSorted];
-            // ...and insert it among the sorted:
-            for (index = numSorted; index > 0; index--)
-            {
-                if (temp < data[index-1])
-                {
-                    data[index] = data[index-1];
-                } else {
-                    break;
-                }
-            }
-            // reinsert value
-            data[index] = temp;
-            numSorted++;
-        }
+    public static void quickSort(int data[]){
+        quickSortRecursive(data, 0, data.length-1);
     }
 
     /**
@@ -98,14 +84,7 @@ public class Sorting {
         }
     }
 
-    /**
-     * Quick Sort Algorithm.
-     * 
-     * @param data  Solicitar los datos que se desean ordenar
-     */
-    public static void quickSort(int data[]){
-        quickSortRecursive(data, 0, data.length-1);
-    }
+
 
     //------------------------------------------------------------------------------
     // Métodos que auxiliaran a los métodos anteriores
@@ -164,4 +143,11 @@ public class Sorting {
         }
     }
 
+
+
+
 }
+
+
+
+//References de geek's for geek's
