@@ -35,7 +35,7 @@ public class Controller {
         numberG = new NumberGenerator();
         fileR = new FileReaderTxt();
         view = new View();
-        nameFile = "docs//numbers.txt";
+        nameFile = "numbers.txt";
     }
 
     // --> Métodos

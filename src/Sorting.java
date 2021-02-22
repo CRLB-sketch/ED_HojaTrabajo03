@@ -119,7 +119,7 @@ public class Sorting {
         // pre: data is array of values; each is less than 1,000,000
         // post: data in the array are sorted into increasing order
         for (int i = 0; i < 6; i++){
-            ordenRadix(data,i);
+            ordenRadix(data,data.length);
         }
     }
 
