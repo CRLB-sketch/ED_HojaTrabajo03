@@ -61,7 +61,7 @@ public class Sorting {
      * @param data array con todos los números a ordenar
      * @return
      */
-    private static int[] mergeSort(int data[]) {
+    public static int[] mergeSort(int data[]) {
 
 
         if(data.length <= 1) {
@@ -112,6 +112,7 @@ public class Sorting {
 
     /***
      * Radix Sort
+     * 
      * @param data el array que contiene los números a ordenar
      */
     public static void radixSort(int data[]){
@@ -151,8 +152,6 @@ public class Sorting {
             numSorted++;
         }
     }
-
-
 
     //------------------------------------------------------------------------------
     // Métodos que auxiliaran a los métodos anteriores
@@ -302,10 +301,7 @@ public class Sorting {
 
     }
 
-
 }
-
-
 
 //Referencias de geek's for geek's
 //References JavaStructures, Duane A. Bailey, 2007

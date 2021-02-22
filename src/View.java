@@ -63,6 +63,35 @@ public class View {
         return op;
     }
 
+    public String askFile(String actualFile){
+        System.out.println("Ruta actual: " + actualFile);
+        System.out.println("Escribe el nombre del archivo: ");
+        System.out.println("Ejemplo 1: [docs//nombreEjemplo.txt]");
+        System.out.println("Ejemplo 2: [nombreEjemplo.txt]");
+        System.out.println("Escriba 'cancelar' por si ya no quiere poner otro doc");
+
+        String op = scan.nextLine();
+        return op;
+    }    
+    
+    public String askMethod(){
+        System.out.println("¿Cual de estos métodos deseas usar?");
+        System.out.println("1. GnomeSort");
+        System.out.println("2. Merge Sort");
+        System.out.println("3. Radix Sort");
+        System.out.println("4. Quick Sort");
+        System.out.println("5. Buble Sort");
+
+        String op = scan.nextLine();
+        return op;
+    }
+
+    public void finalResults(String method, String before, String after){
+        System.out.println("- Metodo Utilizado: " + method);        
+        System.out.println("\nAntes:\n" + before);
+        System.out.println("\nDespues:\n" + after);
+    }
+
     public void invalid(int op){
         if(op == 0)
             System.out.println("--> Opción invalida");

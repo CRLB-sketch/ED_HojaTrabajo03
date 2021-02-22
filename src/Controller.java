@@ -50,6 +50,15 @@ public class Controller {
 
                 // Asignar archivo Txt
                 case "1":
+                    String changeFile = view.askFile(nameFile);
+
+                    if(changeFile.equals("cancelar")){
+                        view.dialogueText("--> Cancelado ;)");
+                    }
+                    else{
+                        nameFile = changeFile;
+                        view.dialogueText("--> Ruta del archivo cambiada ;)");
+                    }
                     
                     break;
             
@@ -93,17 +102,56 @@ public class Controller {
                 // Ordenar los numeros del archivo
                 case "4":
                                                        
-                    String info4 = fileR.readFile(nameFile);
+                    String before = fileR.readFile(nameFile);
                     
-                    if(info4.equals("error")){
+                    if(before.equals("error")){
                         // Mostrar mensaje de error
                         view.errorFile();
                     }
                     else{
                         try {
                             // Obtener los numeros
-                            int[] finalNumbers = numberG.convertStringToInt(info4);
+                            int[] finalNumbers = numberG.convertStringToInt(before);                            
                             
+                            // Preguntar cual método desea usar
+                            String opMethod = view.askMethod();
+
+                            switch (opMethod) {
+                                case "1":
+                                    Sorting.gnomeSort(finalNumbers, finalNumbers.length);
+                                                                        
+                                    view.finalResults("Gnome Sort", before, after(finalNumbers));
+                                    break;
+
+                                case "2":
+                                    int[] resultMS = Sorting.mergeSort(finalNumbers);
+
+                                    view.finalResults("Merge Sort", before, after(resultMS));
+                                    break;
+
+                                case "3":
+                                    Sorting.radixSort(finalNumbers);
+                                    
+                                    view.finalResults("Radix Sort", before, after(finalNumbers));
+                                    break;
+
+                                case "4":
+                                    Sorting.quickSort(finalNumbers);
+
+                                    view.finalResults("Quick Sort", before, after(finalNumbers));
+                                    break;
+
+                                case "5":
+                                    Sorting.bubleSort(finalNumbers);
+                                    
+                                    view.finalResults("Buble Sort", before, after(finalNumbers));
+                                    break;
+                            
+                                default:
+                                    view.invalid(0);
+                                    break;
+                            }
+
                             // Utilizar métodos de ordenamiento
                             
                         } 
@@ -130,5 +178,15 @@ public class Controller {
             }
             
         } while (!out);
+    }
+
+    private String after(int[] finalNumbers){
+        String after = "";
+                                    
+        for (int i : finalNumbers) {
+            after += i + " ";
+        }
+
+        return after;
     }
 }
