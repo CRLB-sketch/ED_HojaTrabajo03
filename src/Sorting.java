@@ -57,6 +57,60 @@ public class Sorting {
     }
 
     /***
+     * algoritmo Merge Sort
+     * @param data array con todos los números a ordenar
+     * @return
+     */
+    private static int[] mergeSort(int data[]) {
+
+
+        if(data.length <= 1) {
+
+            return data;
+
+        }
+
+        int midpoint = data.length / 2;
+
+
+        int[] left = new int[midpoint];
+        int[] right;
+
+        if(data.length % 2 == 0) { // el array es impar
+
+            right = new int[midpoint];
+
+        } else {
+
+            right = new int[midpoint + 1];
+
+        }
+
+        for(int i=0; i < midpoint; i++) {
+
+            left[i] = data[i];
+
+        }
+
+        for(int j=0; j < right.length; j++) {
+
+            right[j] = data[midpoint+j];
+
+        }
+
+        int[] result = new int[data.length];
+
+        left = mergeSort(left);
+        right = mergeSort(right);
+
+        result = merge(left, right);
+
+        return result;
+
+    }
+
+
+    /***
      * Radix Sort
      * @param data el array que contiene los números a ordenar
      */
@@ -196,6 +250,56 @@ public class Sorting {
     private static int digit(int n, int d){
         if (d == 0) return n % 10;
         else return digit(n/10,d-1);
+    }
+
+
+    /***
+     *
+     * @param left es el arreglo izquierdo, que guarda la primera mitad de datos
+     * @param right es el arreglo derecho, que guarda la primera mitad de datos
+     * @return
+     */
+    private static int[] merge(int[] left, int[] right) {
+
+        // Array unido
+        int[] result = new int[left.length + right.length];
+
+        // punteros
+        int leftPointer, rightPointer, resultPointer;
+        leftPointer = rightPointer = resultPointer = 0;
+
+        while(leftPointer < left.length || rightPointer < right.length) {
+
+            if(leftPointer < left.length && rightPointer < right.length) {
+
+                if(left[leftPointer] < right[rightPointer]) {
+
+                    result[resultPointer++] = left[leftPointer++];
+
+                } else {
+
+                    result[resultPointer++] = right[rightPointer++];
+
+                }
+
+            }
+
+            else if(leftPointer < left.length) {
+
+                result[resultPointer++] = left[leftPointer++];
+
+            }
+
+            else if(rightPointer < right.length) {
+
+                result[resultPointer++] = right[rightPointer++];
+
+            }
+
+        }
+
+        return result;
+
     }
 
 
